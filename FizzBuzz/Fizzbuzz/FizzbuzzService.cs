@@ -1,16 +1,17 @@
 ﻿using SolidFizzBuzz.Fizzbuzz.Rules;
+using System.Data;
 
 namespace SolidFizzBuzz.Fizzbuzz
 {
 
     public abstract class FizzbuzzServiceBase
     {
-        private IResultHandler _handler;
-        private List<IRule> _rules;
+        protected IResultHandler _resultHandler;
+        protected List<IRule> _rules;
 
-        public FizzbuzzServiceBase(IResultHandler handler, params IRule[] rules)
+        public FizzbuzzServiceBase(IResultHandler resultHandler, params IRule[] rules)
         {
-            _handler = handler;
+            _resultHandler = resultHandler;
             _rules = rules.ToList();
         }
 
@@ -19,14 +20,27 @@ namespace SolidFizzBuzz.Fizzbuzz
 
     public class FizzbuzzService : FizzbuzzServiceBase
     {
-        public FizzbuzzService(IResultHandler handler, params IRule[] rules) : base(handler, rules)
-        {
-            throw new NotImplementedException();
-        }
+        public FizzbuzzService(IResultHandler resultHandler, params IRule[] rules) : base(resultHandler, rules) { }
 
         public override void Run(Range range)
         {
-            throw new NotImplementedException();
+            for (int i = range.Start.Value; i < range.End.Value; i++)
+            {
+                string output = "";
+                foreach (var rule in _rules)
+                {
+                    var canHandle = rule.TryProcess(i, out string result);
+                    if (canHandle)
+                    {
+                        output += result;
+                    }
+                }
+                if (string.IsNullOrEmpty(output))
+                {
+                    output = $"{i}";
+                }
+                _resultHandler.Handle(output);
+            }
         }
     }
 }

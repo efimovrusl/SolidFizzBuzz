@@ -39,7 +39,7 @@ namespace FizzBuzzTests
         }
 
         [Theory]
-        [InlineData(30, 31, "Fizz")]
+        [InlineData(27, 28, "Fizz")]
         [InlineData(250, 251, "Buzz")]
         [InlineData(1500, 1501, "FizzBuzz")]
         [InlineData(1, 16,
