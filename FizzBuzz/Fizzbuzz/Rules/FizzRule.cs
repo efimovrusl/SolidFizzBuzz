@@ -4,7 +4,11 @@
     {
         public bool TryProcess(int number, out string result)
         {
-            throw new NotImplementedException();
+            var canProcess = number % 3 == 0;
+
+            result = canProcess ? "Fizz" : string.Empty;
+
+            return canProcess;
         }
     }
 }
