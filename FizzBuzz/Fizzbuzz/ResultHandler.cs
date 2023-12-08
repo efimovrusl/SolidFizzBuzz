@@ -9,7 +9,7 @@
     {
         public void Handle(string str)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(str);
         }
     }
 }
