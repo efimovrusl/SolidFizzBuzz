@@ -11,7 +11,7 @@ namespace FizzBuzzTests
         [InlineData(399, true, "Fizz")]
         public void TestFizz(int number, bool shouldBeAbleToProcess, string expectedResult = "")
         {
-            IRule fizzRule = new BuzzRule();
+            IRule fizzRule = new FizzRule();
 
             var canProcess = fizzRule.TryProcess(number, out string result);
 
@@ -25,7 +25,7 @@ namespace FizzBuzzTests
         [InlineData(625, true, "Buzz")]
         public void TestBuzz(int number, bool shouldBeAbleToProcess, string expectedResult = "")
         {
-            IRule fizzRule = new FizzRule();
+            IRule fizzRule = new BuzzRule();
 
             var canProcess = fizzRule.TryProcess(number, out string result);
 
